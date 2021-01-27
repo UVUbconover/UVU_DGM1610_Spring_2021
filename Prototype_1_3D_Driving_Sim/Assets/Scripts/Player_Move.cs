@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Player_Move : MonoBehaviour
 {
+    //Access Modifier, Data Type, Name
+    public float speed = 5.0f;
+
+    public float hInput;
+    public float vInput;
+
+    public float Speed { get => speed; set => speed = value; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +21,9 @@ public class Player_Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(0, 0, 5);
+        hInput = Input.GetAxis("Horizontal");
+        vInput = Input.GetAxis("Vertical");
+        transform.Translate(Vector3.forward * Time.deltaTime * speed * vInput);
+        transform.Translate(Vector3.right * Time.deltaTime * speed * hInput);
     }
 }
